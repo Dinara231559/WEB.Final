@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather & News App</title>
+    <link rel="stylesheet" href="/weather.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+<body>
+    <nav>
+        <a href="/home">Home</a>
+        <a href="/qr-code">QR Code Generator</a>
+        <a href="/nodemailer">Nodemailer</a>
+        <a href="/bmi">BMI Calculator</a>
+        <a href="/weather">Weather API</a>
+        <a href="/crud">CRUD App</a>
+        <button id="logout">Logout</button>
+    </nav>
+
+    <div class="card">
+        <h2>Weather API</h2>
+        <div class="search">
+            <input type="text" id="city-input" placeholder="Enter city name" spellcheck="false">
+            <button id="search-btn">Search</button>
+        </div>
+
+        <div class="Weather">
+            <h1 class="city"></h1>
+            <h1 class="temp"></h1>
+            <h2 class="description"></h2>
+            <img class="weather-icon" src="" alt="Weather Icon" style="display: none;" />
+            <div class="details">
+                <p class="feels-like"></p>
+                <p class="humidity"></p>
+                <p class="wind"></p>
+                <p class="pressure"></p>
+                <p class="coordinates"></p>
+                <p class="country-code"></p>
+            </div>
+        </div>
+
+        <div class="flag-container">
+            <p class="country-name">Country:</p>
+            <img class="flag-image" src="" alt="Country Flag" style="display: none; width: 100px;">
+        </div>
+
+        <div class="news-container"></div>
+        <div id="map" style="height: 400px; margin-top: 20px; display: none;"></div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="/app.js"></script>
+</body>
+</html>

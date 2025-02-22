@@ -1,0 +1,186 @@
+/* General Styles */
+body {
+    font-family: 'Poppins';
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background: url('web.png') no-repeat center center fixed; /* Replace 'WEB.jpg' with your actual image */
+    background-size: cover;
+    height: 100vh; /* Full height */
+    margin: 0;
+}
+
+/* Container */
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+}
+
+/* Form Styles */
+form {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    margin-top: 20px;
+    margin-right: 10px;
+    background-color: rgb(218, 133, 207);
+    padding: 10px;
+    color: #ffffff;
+    font-family: 'Poppins';
+    border-radius: 10px;
+    border-color: #fff;
+}
+
+h1{
+    margin-top: 190px;
+    font-size: 170px;
+}
+
+/* Navigation */
+nav {
+    background-color: transparent;
+    color: rgb(0, 0, 0);
+    align-items: center;
+    display: flex;
+    margin-left: 250px;
+    margin-right: 90px;
+    gap: 50px;
+    margin-top: 20px;
+    font-size: medium;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+   
+}
+
+nav a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 18px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Login & Signup */
+.login-box, .signup-box {
+    width: 300px;
+    padding: 20px;
+    margin: auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Home Page */
+.home {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 20px;
+}
+
+/* BMI Calculator */
+.bmi-container {
+    background: #fff;
+    padding: 20px;
+    margin: auto;
+    width: 50%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.bmi-result {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* QR Code Page */
+.qr-container {
+    text-align: center;
+    margin-top: 150px;
+}
+
+
+.qr {
+    margin-top: 20px;
+    height: 250px;
+    padding: 10px;
+    align-items: center;
+}
+
+/* Email Page */
+.email-container {
+    width: 400px;
+    margin: auto;
+}
+
+/* Weather Page */
+.weather-container {
+    text-align: center;
+    background: #fff;
+    padding: 20px;
+    width: 60%;
+    margin: auto;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.weather-container img {
+    width: 100px;
+}
+
+/* Blog CRUD Page */
+.blog-container {
+    width: 60%;
+    margin: auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.blog-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+}
+
+.blog-body {
+    font-size: 16px;
+    color: #555;
+    text-align: left;
+}
+
+/* Footer */
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+.country-name {
+    display: none;
+}
+

@@ -1,0 +1,145 @@
+body {
+    font-family: 'Poppins';
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background: url('web.png') no-repeat center center fixed; /* Replace 'WEB.jpg' with your actual image */
+    background-size: cover;
+    height: 100vh; /* Full height */
+    margin: 0;
+}
+
+
+nav {
+    background-color: transparent;
+    color: rgb(0, 0, 0);
+    align-items: center;
+    display: flex;
+    margin-left: 250px;
+    margin-right: 90px;
+    gap: 50px;
+    margin-top: 20px;
+    font-size: medium;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+   
+}
+
+nav a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 18px;
+}
+.country-name {
+    display: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+
+.card{
+    width: 90%;
+    max-width: 470px;
+    background: white;
+    border-color: black;
+    color: #000000;
+    margin: 100px auto 0;
+    border-radius: 20px;
+    padding: 40px 35px;
+    text-align: center;
+}
+
+.search{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search input{
+    border: 0;
+    outline: 0;
+    background: #ebfffc;
+    color: #555;
+    padding: 10px 25px;
+    height: 60px;
+    border-radius: 30px;
+    flex: 1;
+    margin-right: 16px;
+    font-size: 18px;
+}
+
+.search-btn{
+    margin-top: 20px;
+    margin-right: 10px;
+    background-color: rgb(218, 133, 207);
+    padding: 10px;
+    color: #ffffff;
+    font-family: 'Poppins';
+    border-radius: 10px;
+    border-color: #fff;
+}
+.details{
+    text-align: start;
+    padding: 0 20px;
+    margin-top: 40px;
+}
+.city{
+    padding-top: 40px;
+}
+
+#map{
+    height: 300px; 
+    width: 100%; 
+    margin-top: 30px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+}
+
+img.weather-icon {
+    margin: 20px auto;
+    display: none;
+    width: 80px;
+    height: 80px;
+   
+}
+
+.news-container{
+    padding-top: 20px;
+    text-align: start;
+}
+
+.image-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.city-image {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    max-width: 300px; /* Adjust this to control the card size */
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.city-image img {
+    width: 100%; /* Ensures the image fills the container */
+    height: auto; /* Maintains the aspect ratio */
+    max-height: 200px; /* Add this to control the height */
+    object-fit: cover; /* Ensures the image is cropped to fit if needed */
+}
+
+.city-image p {
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.city-image a {
+    color: #007bff;
+    text-decoration: none;
+}

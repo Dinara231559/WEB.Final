@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <nav>
+        <a href="/home">Home</a>
+        <a href="/qr-code">QR Code Generator</a>
+        <a href="/nodemailer">Nodemailer</a>
+        <a href="/bmi">BMI Calculator</a>
+        <a href="/weather">Weather API</a>
+        <a href="/crud">CRUD App</a>
+        <button id="logout">Logout</button>
+    </nav>
+
+    <h2>BMI Calculator</h2>
+    <form id="bmiForm">
+        <input type="number" step="0.01" id="weight" name="weight" placeholder="Weight (kg)" required />
+        <input type="number" step="0.01" id="height" name="height" placeholder="Height (cm)" required />
+        <button type="submit">Calculate BMI</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        document.getElementById("bmiForm").addEventListener("submit", function(e) {
+            e.preventDefault(); 
+    
+            const weight = parseFloat(document.getElementById("weight").value);
+            const height = parseFloat(document.getElementById("height").value);
+    
+            console.log("Weight:", weight);
+            console.log("Height (cm):", height);
+    
+            if (!weight || !height) {
+                alert("Please enter valid weight and height!");
+                return;
+            }
+    
+            fetch("/bmi", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ weight, height }) 
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Server Response:", data); // Debug response from backend
+                const resultDiv = document.getElementById("result");
+                resultDiv.innerHTML = `
+                    <div class="result ${data.cssClass}">
+                        Your BMI is ${data.bmi}: ${data.category}
+                    </div>
+                `;
+            })
+            .catch(error => console.error("Error calculating BMI:", error));
+        });
+    </script>
+    
+</body>
+</html>

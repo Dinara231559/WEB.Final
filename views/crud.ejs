@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Platform</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <a href="/home">Home</a>
+        <a href="/qr-code">QR Code Generator</a>
+        <a href="/nodemailer">Nodemailer</a>
+        <a href="/bmi">BMI Calculator</a>
+        <a href="/weather">Weather API</a>
+        <a href="/crud">CRUD App</a>
+        <button id="logout">Logout</button>
+    </nav>
+    
+  <h2>Blog API</h2>
+
+  <form id="create-blog-form">
+    <h2>Create a Blog Post</h2>
+    <input type="text" id="title" placeholder="Blog Title" required>
+    <textarea id="body" placeholder="Blog Content" rows="5" required></textarea>
+    <input type="text" id="author" placeholder="Author">
+    <button type="submit">Create Blog Post</button>
+  </form>
+
+<form>
+  <h2>All Blogs</h2>
+  <button id="get-blogs">Fetch All Blogs</button>
+  <ul id="blogs-list"></ul>
+</form>
+
+<form>
+  <h2>Delete a Blog</h2>
+  <input type="text" id="delete-id" placeholder="Blog ID to delete">
+  <button id="delete-blog">Delete Blog</button>
+</form>
+<form>
+  <h2>Update a Blog</h2>
+  <input type="text" id="update-id" placeholder="Blog ID to update">
+  <input type="text" id="update-title" placeholder="New Title">
+  <textarea id="update-body" placeholder="New Content" rows="5"></textarea>
+  <input type="text" id="update-author" placeholder="New Author">
+  <button id="update-blog">Update Blog</button>
+</form>
+
+  <h2>Response:</h2>
+  <pre id="response"></pre>
+
+  <script>
+    const apiUrl = 'http://localhost:5000/crud';
+
+    // Create a new blog post
+    document.getElementById('create-blog-form').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const title = document.getElementById('title').value;
+      const body = document.getElementById('body').value;
+      const author = document.getElementById('author').value;
+
+      try {
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title, body, author }),
+        });
+        const result = await response.json();
+        document.getElementById('response').textContent = JSON.stringify(result, null, 2);
+      } catch (error) {
+        document.getElementById('response').textContent = error.message;
+      }
+    });
+
+    // Fetch all blog posts
+    document.getElementById('get-blogs').addEventListener('click', async () => {
+      try {
+        const response = await fetch(apiUrl);
+        const blogs = await response.json();
+        const blogsList = document.getElementById('blogs-list');
+        blogsList.innerHTML = '';
+        blogs.forEach(blog => {
+          const li = document.createElement('li');
+          li.textContent = `ID: ${blog._id}, Title: ${blog.title}, Author: ${blog.author}`;
+          blogsList.appendChild(li);
+        });
+        document.getElementById('response').textContent = JSON.stringify(blogs, null, 2);
+      } catch (error) {
+        document.getElementById('response').textContent = error.message;
+      }
+    });
+
+    // Delete a blog post by ID
+    document.getElementById('delete-blog').addEventListener('click', async () => {
+      const id = document.getElementById('delete-id').value;
+      if (!id) return alert('Please enter a Blog ID to delete.');
+
+      try {
+        const response = await fetch(`${apiUrl}/${id}`, { method: 'DELETE' });
+        const result = await response.json();
+        document.getElementById('response').textContent = JSON.stringify(result, null, 2);
+      } catch (error) {
+        document.getElementById('response').textContent = error.message;
+      }
+    });
+
+    // Update a blog post by ID
+    document.getElementById('update-blog').addEventListener('click', async () => {
+      const id = document.getElementById('update-id').value;
+      const title = document.getElementById('update-title').value;
+      const body = document.getElementById('update-body').value;
+      const author = document.getElementById('update-author').value;
+
+      if (!id) return alert('Please enter a Blog ID to update.');
+
+      try {
+        const response = await fetch(`${apiUrl}/${id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title, body, author }),
+        });
+        const result = await response.json();
+        document.getElementById('response').textContent = JSON.stringify(result, null, 2);
+      } catch (error) {
+        document.getElementById('response').textContent = error.message;
+      }
+    });
+  </script>
+</body>
+</html>

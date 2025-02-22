@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nodemailer Email Sender</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a href="/home">Home</a>
+        <a href="/qr-code">QR Code Generator</a>
+        <a href="/nodemailer">Nodemailer</a>
+        <a href="/bmi">BMI Calculator</a>
+        <a href="/weather">Weather API</a>
+        <a href="/crud">CRUD App</a>
+        <button id="logout">Logout</button>
+    </nav>
+    <h2>Send an Email</h2>
+    <% if (message) { %>
+        <p style="color: green;"><%= message %></p>
+    <% } %>
+    <% if (error) { %>
+        <p style="color: red;"><%= error %></p>
+    <% } %>
+
+    <form action="/send-email" method="post">
+        <label>Recipient Email:</label>
+        <input type="email" name="recipient" required><br>
+
+        <label>Subject:</label>
+        <input type="text" name="subject" required><br>
+
+        <label>Message:</label>
+        <textarea name="message" required></textarea><br>
+
+        <button type="submit">Send Email</button>
+    </form>
+</body>
+</html>
