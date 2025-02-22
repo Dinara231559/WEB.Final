@@ -3,9 +3,9 @@ body {
     margin: 0;
     padding: 0;
     text-align: center;
-    background: url('web.png') no-repeat center center fixed; /* Replace 'WEB.jpg' with your actual image */
+    background: url('web.png') no-repeat center center fixed;
     background-size: cover;
-    height: 100vh; /* Full height */
+    height: 100vh; 
     margin: 0;
 }
 
@@ -128,10 +128,10 @@ img.weather-icon {
 }
 
 .city-image img {
-    width: 100%; /* Ensures the image fills the container */
-    height: auto; /* Maintains the aspect ratio */
-    max-height: 200px; /* Add this to control the height */
-    object-fit: cover; /* Ensures the image is cropped to fit if needed */
+    width: 100%; 
+    height: auto; 
+    max-height: 200px; 
+    object-fit: cover; 
 }
 
 .city-image p {

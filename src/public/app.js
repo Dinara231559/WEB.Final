@@ -70,7 +70,7 @@ document.getElementById('search-btn').addEventListener('click', async () => {
             flagImage.style.display = 'block';
             
             countryName.textContent = `Country: ${data.flag.country}`;
-            countryName.style.display = 'block'; // Show "Country:" when data is available
+            countryName.style.display = 'block'; 
         } else {
             console.error("Flag data missing or incorrect:", data.flag);
         }

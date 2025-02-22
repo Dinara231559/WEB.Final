@@ -80,14 +80,14 @@ app.get('/home', (req,res)=>{
 });
 
 app.get('/bmi', (req, res) => {
-    res.render('bmi'); // Renders the bmi.ejs view when visiting /bmi
+    res.render('bmi'); 
 });
 
 
 app.post('/bmi', (req, res) => {
     let { weight, height } = req.body;
     weight = parseFloat(weight);
-    height = parseFloat(height) / 100; // Convert cm to meters
+    height = parseFloat(height) / 100; 
 
     console.log("Parsed Weight:", weight);
     console.log("Parsed Height (m):", height);
@@ -117,7 +117,7 @@ app.post('/bmi', (req, res) => {
 });
 
 app.get('/qr-code', (req,res) =>{
-    res.render("qr-code", { qrImage: null, error: null }); // ✅ Pass error as null
+    res.render("qr-code", { qrImage: null, error: null }); 
 });
 
 app.post("/generate-qr", (req, res) => {
@@ -127,34 +127,29 @@ app.post("/generate-qr", (req, res) => {
         return res.render("qr-code", { qrImage: null, error: "Please enter a valid URL!" });
     }
 
-    // Generate QR code image
     const qrImage = qr.imageSync(url, { type: "png" });
     const qrPath = path.join(__dirname, "public", "qrcode.png");
     fs.writeFileSync(qrPath, qrImage);
 
-    // Render page with QR code
+
     res.render("qr-code", { qrImage: "/qrcode.png", error: null });
 });
 
-// Route to render Nodemailer form
 app.get("/nodemailer", (req, res) => {
     res.render("nodemailer", { message: null, error: null });
 });
 
-// Route to send email
 app.post("/send-email", async (req, res) => {
     const { recipient, subject, message } = req.body;
 
-    // Create transporter
     const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-            user: process.env.EMAIL_USER,  // Use environment variables
-            pass: process.env.EMAIL_PASS   // NEVER expose your credentials
+            user: process.env.EMAIL_USER,  
+            pass: process.env.EMAIL_PASS   
         }
     });
 
-    // Email details
     const mailOptions = {
         from: process.env.EMAIL_USER,
         to: recipient,
@@ -209,7 +204,7 @@ app.get('/api/weather', async (req, res) => {
             },
         });
 
-        const countryName = weatherData.sys.country; // Get country code (e.g., "KZ")
+        const countryName = weatherData.sys.country; 
         const countryResponse = await axios.get(`${COUNTRY_API}${countryName}`);
         const countryInfo = countryResponse.data[0];
         const flagUrl = countryInfo.flags.svg;

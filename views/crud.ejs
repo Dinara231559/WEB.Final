@@ -54,7 +54,6 @@
   <script>
     const apiUrl = 'http://localhost:5000/crud';
 
-    // Create a new blog post
     document.getElementById('create-blog-form').addEventListener('submit', async (event) => {
       event.preventDefault();
       const title = document.getElementById('title').value;
@@ -74,7 +73,7 @@
       }
     });
 
-    // Fetch all blog posts
+
     document.getElementById('get-blogs').addEventListener('click', async () => {
       try {
         const response = await fetch(apiUrl);
@@ -92,7 +91,6 @@
       }
     });
 
-    // Delete a blog post by ID
     document.getElementById('delete-blog').addEventListener('click', async () => {
       const id = document.getElementById('delete-id').value;
       if (!id) return alert('Please enter a Blog ID to delete.');
@@ -106,7 +104,6 @@
       }
     });
 
-    // Update a blog post by ID
     document.getElementById('update-blog').addEventListener('click', async () => {
       const id = document.getElementById('update-id').value;
       const title = document.getElementById('update-title').value;
