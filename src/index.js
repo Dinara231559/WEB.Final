@@ -298,6 +298,9 @@ app.get('/api/weather', async (req, res) => {
     }
   });
 
+  app.get('/logout', (req, res) => {
+    res.redirect('/'); 
+  })
 
 app.listen(port, () => {
     console.log(`Server listening on http://localhost:${port}`)

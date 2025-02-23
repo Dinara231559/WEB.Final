@@ -126,18 +126,6 @@ nav a:hover {
     margin: auto;
 }
 
-.weather-container {
-    text-align: center;
-    background: #fff;
-    padding: 20px;
-    width: 60%;
-    margin: auto;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
-.weather-container img {
-    width: 100px;
-}
 
 .blog-container {
     width: 60%;
