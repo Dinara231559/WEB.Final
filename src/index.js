@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require('body-parser');
 const nodemailer = require("nodemailer");
 const axios = require('axios');
+const cookieParser = require("cookie-parser");
 const { collection, Blog } = require("./config");
 const bcrypt = require('bcrypt');
 const path = require('path');
@@ -12,6 +13,7 @@ const port = 5000;
 const app = express();
 
 app.use(express.json());
+app.use(cookieParser());
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -66,20 +68,27 @@ app.post("/login", async (req, res) => {
         if (!isPasswordMatch) {
             res.send("wrong Password");
         }
-        else {
-            res.redirect("/home");;
-        }
+            res.cookie("loggedIn", "true", { httpOnly: true, maxAge: 1000 * 60 * 60 }); 
+            res.redirect("/home");
     }
     catch {
         res.send("wrong Details");
     }
 });
 
-app.get('/home', (req,res)=>{
+const checkAuth = (req, res, next) => {
+    if (req.cookies.loggedIn !== "true") {
+        return res.redirect("/"); 
+    }
+
+    next();
+};
+
+app.get('/home', checkAuth, (req,res)=>{
     res.render("home");
 });
 
-app.get('/bmi', (req, res) => {
+app.get('/bmi', checkAuth, (req, res) => {
     res.render('bmi'); 
 });
 
@@ -116,7 +125,7 @@ app.post('/bmi', (req, res) => {
     res.json({ bmi, category, cssClass });
 });
 
-app.get('/qr-code', (req,res) =>{
+app.get('/qr-code', checkAuth, (req,res) =>{
     res.render("qr-code", { qrImage: null, error: null }); 
 });
 
@@ -135,7 +144,7 @@ app.post("/generate-qr", (req, res) => {
     res.render("qr-code", { qrImage: "/qrcode.png", error: null });
 });
 
-app.get("/nodemailer", (req, res) => {
+app.get("/nodemailer",checkAuth, (req, res) => {
     res.render("nodemailer", { message: null, error: null });
 });
 
@@ -173,7 +182,7 @@ app.post("/send-email", async (req, res) => {
     }
 });
 
-app.get('/weather', (req, res) => {
+app.get('/weather', checkAuth, (req, res) => {
     res.render('weather', { weatherData: null, newsData: null, error: null });
 });
 app.get('/api/weather', async (req, res) => {
@@ -250,7 +259,7 @@ app.get('/api/weather', async (req, res) => {
 });
 
   
-  app.get('/crud', (req,res) =>{
+  app.get('/crud',checkAuth, (req,res) =>{
     res.render("crud")
   })
 
@@ -299,8 +308,10 @@ app.get('/api/weather', async (req, res) => {
   });
 
   app.get('/logout', (req, res) => {
+    res.clearCookie("loggedIn"); 
     res.redirect('/'); 
-  })
+});
+
 
 app.listen(port, () => {
     console.log(`Server listening on http://localhost:${port}`)
